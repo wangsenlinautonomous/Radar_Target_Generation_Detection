@@ -8,13 +8,25 @@
 
 ## CFAR implementation
 
-%Select the number of Training Cells in both the dimensions.
+%design a loop such that it slides the CUT across range doppler map by
+%giving margins at the edges for Training and Guard Cells.
+%For every iteration sum the signal level within all the training
+%cells. To sum convert the value from logarithmic to linear using db2pow
+%function. Average the summed values for all of the training
+%cells used. After averaging convert it back to logarithimic using pow2db.
+%Further add the offset to it to determine the threshold. Next, compare the
+%signal under CUT with this threshold. If the CUT level > threshold assign
+%it a value of 1, else equate it to 0.
 
+
+%Select the number of Training Cells in both the dimensions.
 Tr = 8;
 Td = 4;
 
-%Select the number of Guard Cells in both dimensions around the Cell under 
-%test (CUT) for accurate estimation
-
+%Select the number of Guard Cells in both dimensions
 Gr = 4;
 Gd = 2;
+
+## Supree non thresholded edges
+Do not need as I have initialeze the matrix with zeros
+
